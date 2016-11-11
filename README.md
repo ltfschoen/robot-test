@@ -1,3 +1,58 @@
+# Solution
+
+## Setup
+
+* Clone the repository `git clone https://github.com/ltfschoen/robot-test` and change directory to its root folder
+
+* Install [Node.js](https://nodejs.org) (includes NPM)
+
+* Install Mocha JS testing framework
+
+`npm install mocha -g`
+
+* Install dependencies in package.json, including Chai assertions
+
+`npm install`
+
+## Testing
+
+* Recursively find all tests in subdirectories, run them and watch for changes
+
+`npm test`
+
+## Run Samples
+
+* Example 1: Input from data/example_instructions1. Output should be 0,1,NORTH
+`node src/example1.js`
+
+* Example 2: Input from data/example_instructions2. Output should be 0,0,WEST
+`node src/example2.js`
+
+* Example 3: Input from data/example_instructions3. Output should be 3,3,NORTH
+`node src/example3.js`
+
+* Example 4: Input from data/example_instructions4. Output should be as shown below:
+`node src/example4.js`
+```
+4,0,EAST
+4,0,EAST
+4,1,NORTH
+```
+
+## System Used
+
+* Node and NPM versions
+```
+$ node -v
+v7.0.0
+$ npm -v
+3.10.8
+```
+
+## Client Specification Source
+
+* [https://github.com/bauerxcelmedia/robot-test](https://github.com/bauerxcelmedia/robot-test)
+
 # The Robot Test
 
 Using Node.js, design and code up a Toy Robot Simulator. You may use another programming language, but please explain reasons why you choose to. Host your code in your Github account and send in your repo URL for review. You should expect to spend a decent amount of time (3-4 hours) on the exercise.

@@ -1,0 +1,23 @@
+{
+  "name": "toy_robot",
+  "version": "1.0.0",
+  "description": "toy robot may under given constraints be placed on table with 5x5 units as dimensions and then further placed in other places, moved, and rotated, or a report of its current place shown",
+  "main": "parse_instructions.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha tests --recursive --watch"
+  },
+  "keywords": [
+    "toy",
+    "robot",
+    "table",
+    "test"
+  ],
+  "author": "Luke Schoen",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
