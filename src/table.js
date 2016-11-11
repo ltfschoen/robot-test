@@ -8,123 +8,136 @@ function Table() {
     this.units = matrix.coordinatesAndFacingMatrix();
 }
 
-Table.prototype.changeToyRobotPlace = function(newPlace) {
-    // Remove facing value from old place in matrix
-    var oldPlace = this.currentToyRobotPlace;
-    this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = "";
+Table.prototype = function() {
+   var didMakeFirstPlace = function() {
+       return this.isToyRobotPlaced;
+   };
 
-    // Add new face value associated with new place in matrix
-    this.units[[newPlace.xCoordinate, newPlace.yCoordinate]] = newPlace.faceDirection;
-    this.currentToyRobotPlace = newPlace;
-    this.historyOfToyRobotPlaces.push(newPlace);
-    this.isToyRobotPlaced = true;
-    return true;
-};
+   var changeToyRobotPlace = function(newPlace) {
+       // Remove facing value from old place in matrix
+       var oldPlace = this.currentToyRobotPlace;
+       this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = "";
 
-Table.prototype.getCoordinatesOfPlaceToMoveTo = function() {
-    var moveBy = { xMove: 0, yMove: 0 };
+       // Add new face value associated with new place in matrix
+       this.units[[newPlace.xCoordinate, newPlace.yCoordinate]] = newPlace.faceDirection;
+       this.currentToyRobotPlace = newPlace;
+       this.historyOfToyRobotPlaces.push(newPlace);
+       this.isToyRobotPlaced = true;
+       return true;
+   };
 
-    var oldPlace = this.currentToyRobotPlace;
-    if (oldPlace.faceDirection == "NORTH") {
-        moveBy.yMove += 1;
-    } else if (oldPlace.faceDirection == "SOUTH") {
-        moveBy.yMove -= 1;
-    } else if (oldPlace.faceDirection == "EAST") {
-        moveBy.xMove += 1;
-    } else if (oldPlace.faceDirection == "WEST") {
-        moveBy.xMove -= 1;
-    }
-    return moveBy;
-};
+   var getCoordinatesOfPlaceToMoveTo = function() {
+       var moveBy = { xMove: 0, yMove: 0 };
 
-Table.prototype.moveToyRobot = function() {
-    // Remove facing value from old place in matrix
-    var oldPlace = this.currentToyRobotPlace;
-    this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = "";
+       var oldPlace = this.currentToyRobotPlace;
+       if (oldPlace.faceDirection == "NORTH") {
+           moveBy.yMove += 1;
+       } else if (oldPlace.faceDirection == "SOUTH") {
+           moveBy.yMove -= 1;
+       } else if (oldPlace.faceDirection == "EAST") {
+           moveBy.xMove += 1;
+       } else if (oldPlace.faceDirection == "WEST") {
+           moveBy.xMove -= 1;
+       }
+       return moveBy;
+   };
 
-    var moveBy = this.getCoordinatesOfPlaceToMoveTo();
+   var moveToyRobot = function() {
+       // Remove facing value from old place in matrix
+       var oldPlace = this.currentToyRobotPlace;
+       this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = "";
 
-    // Add new face value associated with new place in matrix
-    this.units[[oldPlace.xCoordinate + moveBy.xMove, oldPlace.yCoordinate + moveBy.yMove]] = oldPlace.faceDirection;
+       var moveBy = this.getCoordinatesOfPlaceToMoveTo();
 
-    // Update current toy robot place with coordinates resulting from the move
-    this.currentToyRobotPlace.xCoordinate = parseInt(this.currentToyRobotPlace.xCoordinate) + moveBy.xMove;
-    this.currentToyRobotPlace.yCoordinate = parseInt(this.currentToyRobotPlace.yCoordinate) + moveBy.yMove;
+       // Add new face value associated with new place in matrix
+       this.units[[oldPlace.xCoordinate + moveBy.xMove, oldPlace.yCoordinate + moveBy.yMove]] = oldPlace.faceDirection;
 
-    // Remove and replace the current toy robot place object stored in last position of history
-    this.historyOfToyRobotPlaces.pop();
-    this.historyOfToyRobotPlaces.push(oldPlace);
+       // Update current toy robot place with coordinates resulting from the move
+       this.currentToyRobotPlace.xCoordinate = parseInt(this.currentToyRobotPlace.xCoordinate) + moveBy.xMove;
+       this.currentToyRobotPlace.yCoordinate = parseInt(this.currentToyRobotPlace.yCoordinate) + moveBy.yMove;
 
-    return true;
-};
+       // Remove and replace the current toy robot place object stored in last position of history
+       this.historyOfToyRobotPlaces.pop();
+       this.historyOfToyRobotPlaces.push(oldPlace);
 
-Table.prototype.getDirectionForRotation = function(rotation) {
-    var oldPlace = this.currentToyRobotPlace;
-    var newDirecton;
+       return true;
+   };
 
-    if (rotation == "LEFT") {
-        if (oldPlace.faceDirection == "NORTH") {
-            newDirecton = "WEST";
-        } else if (oldPlace.faceDirection == "SOUTH") {
-            newDirecton = "EAST";
-        } else if (oldPlace.faceDirection == "EAST") {
-            newDirecton = "NORTH";
-        } else if (oldPlace.faceDirection == "WEST") {
-            newDirecton = "SOUTH";
-        }
-    } else if (rotation == "RIGHT") {
-        if (oldPlace.faceDirection == "NORTH") {
-            newDirecton = "EAST";
-        } else if (oldPlace.faceDirection == "SOUTH") {
-            newDirecton = "WEST";
-        } else if (oldPlace.faceDirection == "EAST") {
-            newDirecton = "SOUTH";
-        } else if (oldPlace.faceDirection == "WEST") {
-            newDirecton = "NORTH";
-        }
-    }
-    return newDirecton;
-};
+   var getDirectionForRotation = function(rotation) {
+       var oldPlace = this.currentToyRobotPlace;
+       var newDirecton;
 
-Table.prototype.rotateToyRobot = function(rotation) {
-    var oldPlace = this.currentToyRobotPlace;
-    var newDirection = this.getDirectionForRotation(rotation)
+       if (rotation == "LEFT") {
+           if (oldPlace.faceDirection == "NORTH") {
+               newDirecton = "WEST";
+           } else if (oldPlace.faceDirection == "SOUTH") {
+               newDirecton = "EAST";
+           } else if (oldPlace.faceDirection == "EAST") {
+               newDirecton = "NORTH";
+           } else if (oldPlace.faceDirection == "WEST") {
+               newDirecton = "SOUTH";
+           }
+       } else if (rotation == "RIGHT") {
+           if (oldPlace.faceDirection == "NORTH") {
+               newDirecton = "EAST";
+           } else if (oldPlace.faceDirection == "SOUTH") {
+               newDirecton = "WEST";
+           } else if (oldPlace.faceDirection == "EAST") {
+               newDirecton = "SOUTH";
+           } else if (oldPlace.faceDirection == "WEST") {
+               newDirecton = "NORTH";
+           }
+       }
+       return newDirecton;
+   };
 
-    // Add new face value associated with existing place in matrix
-    this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = newDirection;
+   var rotateToyRobot = function(rotation) {
+       var oldPlace = this.currentToyRobotPlace;
+       var newDirection = this.getDirectionForRotation(rotation)
 
-    // Update current toy robot place with new direction
-    this.currentToyRobotPlace.faceDirection = newDirection;
+       // Add new face value associated with existing place in matrix
+       this.units[[oldPlace.xCoordinate, oldPlace.yCoordinate]] = newDirection;
 
-    // Remove and replace the current toy robot place object stored in last position of history
-    this.historyOfToyRobotPlaces.pop();
-    this.historyOfToyRobotPlaces.push(oldPlace);
+       // Update current toy robot place with new direction
+       this.currentToyRobotPlace.faceDirection = newDirection;
 
-    return true;
-};
+       // Remove and replace the current toy robot place object stored in last position of history
+       this.historyOfToyRobotPlaces.pop();
+       this.historyOfToyRobotPlaces.push(oldPlace);
 
-Table.prototype.reportCurrentToyRobotPlace = function() {
-    // Ignore REPORT command prior to first PLACE command
-    if (!this.didMakeFirstPlace) { return ""; }
-    return this.currentToyRobotPlace.getPlace();
-};
+       return true;
+   };
 
-Table.prototype.reportHistoryOfToyRobotPlaces = function() {
-    // Ignore REPORT command prior to first PLACE command
-    if (!this.didMakeFirstPlace) { return ""; }
+   var reportCurrentToyRobotPlace = function() {
+       // Ignore REPORT command prior to first PLACE command
+       if (!this.didMakeFirstPlace) { return ""; }
+       return this.currentToyRobotPlace.getPlace();
+   };
 
-    var currentPlace = this.currentToyRobotPlace.getPlace();
-    // Exclude current place when fetching from history
-    var prevPlaces = this.historyOfToyRobotPlaces.slice(0, -1);
-    var prevPlacesArr = [];
-    for (var element = 0, totalLength = prevPlaces.length; element < totalLength; element++) {
-        prevPlacesArr.push(prevPlaces[element].getPlace());
-    }
-    return prevPlacesArr.concat(currentPlace).join("\n");
-};
+   var reportHistoryOfToyRobotPlaces = function() {
+       // Ignore REPORT command prior to first PLACE command
+       if (!this.didMakeFirstPlace) { return ""; }
 
-Table.prototype.didMakeFirstPlace = function() {
-    return this.isToyRobotPlaced;
-};
+       var currentPlace = this.currentToyRobotPlace.getPlace();
+       // Exclude current place when fetching from history
+       var prevPlaces = this.historyOfToyRobotPlaces.slice(0, -1);
+       var prevPlacesArr = [];
+       for (var element = 0, totalLength = prevPlaces.length; element < totalLength; element++) {
+           prevPlacesArr.push(prevPlaces[element].getPlace());
+       }
+       return prevPlacesArr.concat(currentPlace).join("\n");
+   };
+
+   return {
+       didMakeFirstPlace: didMakeFirstPlace,
+       changeToyRobotPlace: changeToyRobotPlace,
+       getCoordinatesOfPlaceToMoveTo: getCoordinatesOfPlaceToMoveTo,
+       moveToyRobot: moveToyRobot,
+       getDirectionForRotation: getDirectionForRotation,
+       rotateToyRobot: rotateToyRobot,
+       reportCurrentToyRobotPlace: reportCurrentToyRobotPlace,
+       reportHistoryOfToyRobotPlaces: reportHistoryOfToyRobotPlaces
+   };
+}();
 
 module.exports = Table;

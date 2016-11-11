@@ -39,15 +39,11 @@
 4,1,NORTH
 ```
 
-## System Used
+## Tech Stack
 
-* Node and NPM versions
-```
-$ node -v
-v7.0.0
-$ npm -v
-3.10.8
-```
+* Node.js v7, NPM v3.10.8
+* Mocha testing framework
+* Chai BDD
 
 ## Client Specification Source
 
