@@ -10,8 +10,7 @@ InstructionReader.prototype = function() {
         var place;
 
         // Cache length of array to avoid recalculating total on each iteration
-        for (var element = 0; element < commands.length; element++) {
-
+        for (var element = 0, totalLength = commands.length; element < totalLength; element++) {
             // Case insensitive RegEx match
             if (commands[element].match(/PLACE/gi) != null) {
                 // Extract PLACE arguments (i.e. 0,0,NORTH)

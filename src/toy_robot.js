@@ -7,18 +7,15 @@ ToyRobot.prototype = function() {
     };
 
     var changePlace = function(table, newPlace) {
-        table.changeToyRobotPlace(newPlace);
-        return true;
+        return table.changeToyRobotPlace(newPlace);
     };
 
     var move = function(table) {
-        table.moveToyRobot();
-        return true;
+        return table.moveToyRobot();
     };
 
     var rotate = function(table, rotation) {
-        table.rotateToyRobot(rotation);
-        return true;
+        return table.rotateToyRobot(rotation);
     };
 
     var reportCurrentPlace = function(table) {
@@ -38,7 +35,5 @@ ToyRobot.prototype = function() {
         reportHistoryOfPlaces: reportHistoryOfPlaces
     };
 }();
-
-
 
 module.exports = ToyRobot;
