@@ -2,13 +2,12 @@
   "name": "toy_robot",
   "version": "1.0.0",
   "description": "toy robot may under given constraints be placed on table with 5x5 units as dimensions and then further placed in other places, moved, and rotated, or a report of its current place shown",
-  "main": "parse_instructions.js",
+  "main": "./src/instruction_reader.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests --recursive",
-    "live": "mocha tests --recursive --watch"
+    "test": "npm run test"
   },
   "keywords": [
     "toy",

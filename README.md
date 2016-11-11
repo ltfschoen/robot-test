@@ -16,23 +16,22 @@
 
 ## Testing
 
+* Travic CI Build Status: [![Build Status](https://api.travis-ci.org/ltfschoen/robot-test.svg)](https://travis-ci.org/ltfschoen/robot-test)
+
 * Recursively find all tests in subdirectories, run them and watch for changes
 
-`npm test`
+`npm run live`
 
 ## Run Samples
 
-* Example 1: Input from data/example_instructions1. Output should be 0,1,NORTH
-`node src/example1.js`
+* [x] Example 1: Run with: `node src/example1.js`. Input from data/example_instructions1. Terminal output should be `0,1,NORTH`
 
-* Example 2: Input from data/example_instructions2. Output should be 0,0,WEST
-`node src/example2.js`
+* [x] Example 2: Run with: `node src/example2.js`. Input from data/example_instructions2. Terminal output should be `0,0,WEST`
 
-* Example 3: Input from data/example_instructions3. Output should be 3,3,NORTH
-`node src/example3.js`
+* [x] Example 3: Run with: `node src/example3.js`. Input from data/example_instructions3. Terminal output should be `3,3,NORTH`
 
-* Example 4: Input from data/example_instructions4. Output should be as shown below:
-`node src/example4.js`
+* [x] Example 4: Run with: `node src/example4.js`. Input from data/example_instructions4. Terminal output should be as shown below:
+
 ```
 4,0,EAST
 4,0,EAST
