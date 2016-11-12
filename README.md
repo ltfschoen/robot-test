@@ -20,13 +20,13 @@
 
 * Recursively find all tests in subdirectories, run them and watch for changes
 
-`npm run live`
+`npm run test-live`
 
 ## Assumptions
 
 * It is acceptable for the program to be case insensitive when interpreting input commands (i.e. both `PLACE 0,0,NORTH` and `place 0,0,north` are valid inputs)
 
-## Run Samples
+## Run Local Samples
 
 * [x] Example 1: Run with: `node src/example1.js`. Input from data/example_instructions1. Terminal output should be `0,1,NORTH`
 
@@ -42,11 +42,24 @@
 4,1,NORTH
 ```
 
+## Run Local Web Server
+
+* Start the development server with auto re-bundling using `npm run dev` and opening src/client/index.html in a web browser (or going to [http://localhost:3000](http://localhost:3000))
+
+Note: IN PROGRESS
+
 ## Tech Stack
 
-* Node.js v7, NPM v3.10.8
-* Mocha testing framework
-* Chai BDD
+* Client-side
+- React.js
+- Webpack (build tool)
+- Babel (ES6 transpiler)
+
+* Server-side
+- Node.js v7, NPM v3.10.8
+- Express (web server)
+- Mocha testing framework
+- Chai BDD
 
 ## Client Specification Source
 

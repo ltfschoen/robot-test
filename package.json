@@ -7,8 +7,12 @@
     "test": "tests"
   },
   "scripts": {
+    "webpack_dev_watch": "./node_modules/.bin/webpack -d --watch --config webpack.dev.config.js --progress --profile",
+    "express-server": "node ./server",
+    "dev": "concurrently --kill-others \"npm run webpack_dev_watch\" \"npm run express-server\"",
+    "postinstall": "node deploy",
     "test": "mocha tests --recursive",
-    "live": "mocha tests --recursive --watch"
+    "test-live": "mocha tests --recursive --watch"
   },
   "keywords": [
     "toy",
@@ -16,9 +20,34 @@
     "table",
     "test"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltfschoen/robot-test.git"
+  },
   "author": "Luke Schoen",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ltfschoen/robot-test/issues"
+  },
+  "homepage": "https://github.com/ltfschoen/robot-test#readme",
+  "engines": {
+    "node": "7.0.0",
+    "npm": "3.10.8"
+  },
+  "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "express": "^4.14.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3"
+  },
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "concurrently": "^3.1.0"
   }
 }
