@@ -56,16 +56,16 @@ Note: IN PROGRESS
 
 ## Tech Stack
 
-* Client-side
-- React.js
-- Webpack (build tool)
-- Babel (ES6 transpiler)
+### Client-side
+* React.js
+* Webpack (build tool)
+* Babel (ES6 transpiler)
 
-* Server-side
-- Node.js v7, NPM v3.10.8
-- Express (web server)
-- Mocha testing framework
-- Chai BDD
+### Server-side
+* Node.js v7, NPM v3.10.8
+* Express (web server)
+* Mocha testing framework
+* Chai BDD
 
 ## Client Specification Source
 
