@@ -24,7 +24,7 @@ describe('NewToyRobotWithValidPlaceAndFacingDirection', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 0,0,NORTH\nPLACE 0,2,SOUTH";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(table.units[[0,0]]).to.equal("");
         expect(table.units[[0,2]]).to.equal("SOUTH");
     });
@@ -34,7 +34,7 @@ describe('NewToyRobotWithValidPlaceAndFacingDirection', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 1,1,NORTH\nREPORT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("1,1,NORTH");
     });
 
@@ -43,7 +43,7 @@ describe('NewToyRobotWithValidPlaceAndFacingDirection', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 1,1,NORTH\nREPORT\nPLACE 3,3,SOUTH\nREPORT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("3,3,SOUTH");
     });
 
@@ -52,7 +52,7 @@ describe('NewToyRobotWithValidPlaceAndFacingDirection', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 1,1,NORTH\nREPORT\nPLACE 3,3,SOUTH\nREPORT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportHistoryOfPlaces(table)).to.equal("1,1,NORTH\n3,3,SOUTH");
     });
 
@@ -61,7 +61,7 @@ describe('NewToyRobotWithValidPlaceAndFacingDirection', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "MOVE\nLEFT\nREPORT\nPLACE 1,1,NORTH";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportHistoryOfPlaces(table)).to.equal("1,1,NORTH");
     });
 });
@@ -72,7 +72,7 @@ describe('NewToyRobotWithCommandToChangeToInvalidPlaceOrFacingDirection', functi
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 5,0,NORTH";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal(",,");
     });
 
@@ -81,7 +81,7 @@ describe('NewToyRobotWithCommandToChangeToInvalidPlaceOrFacingDirection', functi
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 4,-1,NORTH";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal(",,");
     });
 
@@ -90,7 +90,7 @@ describe('NewToyRobotWithCommandToChangeToInvalidPlaceOrFacingDirection', functi
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 4,1,RANDOM_DIRECTION";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal(",,");
     });
 });
@@ -101,19 +101,19 @@ describe('NewToyRobotWithValidPlaceAndFacingDirectionAndMove', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 3,1,NORTH\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("3,2,NORTH");
 
         instructions = "PLACE 0,1,EAST\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("1,1,EAST");
 
         instructions = "PLACE 1,0,WEST\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("0,0,WEST");
 
         instructions = "PLACE 2,1,SOUTH\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("2,0,SOUTH");
     });
 });
@@ -124,19 +124,19 @@ describe('NewToyRobotWithValidPlaceAndFacingDirectionAndMove', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 4,4,EAST\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("4,4,EAST");
 
         instructions = "PLACE 4,0,SOUTH\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("4,0,SOUTH");
 
         instructions = "PLACE 0,3,WEST\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("0,3,WEST");
 
         instructions = "PLACE 2,4,NORTH\nMOVE";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("2,4,NORTH");
     });
 });
@@ -147,19 +147,19 @@ describe('NewToyRobotWithValidPlaceAndFacingDirectionAndRotate', function() {
         var toyRobot = new ToyRobot();
         var instructionReader = new InstructionReader();
         var instructions = "PLACE 4,4,EAST\nLEFT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("4,4,NORTH");
 
         instructions = "PLACE 4,0,SOUTH\nLEFT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("4,0,EAST");
 
         instructions = "PLACE 0,3,WEST\nRIGHT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("0,3,NORTH");
 
         instructions = "PLACE 2,4,NORTH\nRIGHT";
-        instructionReader.processCommands(table, toyRobot, instructions);
+        instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
         expect(toyRobot.reportCurrentPlace(table)).to.equal("2,4,EAST");
     });
 });

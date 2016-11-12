@@ -22,7 +22,9 @@ Place.prototype = function() {
     };
 
     var isValidPlace = function() {
-        if (this.xCoordinate >= 0 && this.xCoordinate <= 4 &&
+        if (!isNaN(parseInt(this.xCoordinate)) && !isNaN(parseInt(this.xCoordinate)) &&
+            !isNaN(this.yCoordinate) && !isNaN(this.yCoordinate) &&
+            this.xCoordinate >= 0 && this.xCoordinate <= 4 &&
             this.yCoordinate >= 0 && this.yCoordinate <= 4 &&
             this.validFaceDirections.indexOf(this.faceDirection) != -1) {
             return true;

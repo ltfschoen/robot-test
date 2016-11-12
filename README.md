@@ -22,6 +22,10 @@
 
 `npm run live`
 
+## Assumptions
+
+* It is acceptable for the program to be case insensitive when interpreting input commands (i.e. both `PLACE 0,0,NORTH` and `place 0,0,north` are valid inputs)
+
 ## Run Samples
 
 * [x] Example 1: Run with: `node src/example1.js`. Input from data/example_instructions1. Terminal output should be `0,1,NORTH`

@@ -119,6 +119,8 @@ Table.prototype = function() {
        var onlyPreviousPlaces = this.historyOfToyRobotPlaces.slice(0, -1);
        var onlyPreviousPlacesForReport = [];
        for (var element = 0, totalLength = onlyPreviousPlaces.length; element < totalLength; element++) {
+           if (!isNaN(parseInt(onlyPreviousPlaces[element].xCoordinate)) &&
+               !isNaN(parseInt(onlyPreviousPlaces[element].yCoordinate)))
            onlyPreviousPlacesForReport.push(onlyPreviousPlaces[element].getPlace());
        }
        return onlyPreviousPlacesForReport.concat(this.currentToyRobotPlace.getPlace()).join("\n");

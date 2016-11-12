@@ -6,5 +6,5 @@ var table = new Table();
 var toyRobot = new ToyRobot();
 var instructionReader = new InstructionReader();
 instructionReader.readInstructionFile(table, toyRobot, "example_instructions1", function(err, instructions) {
-    instructionReader.processCommands(table, toyRobot, instructions);
+    instructionReader.interpretCommandsFromInstructions(table, toyRobot, instructions);
 });
