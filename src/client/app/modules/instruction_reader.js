@@ -65,10 +65,11 @@ InstructionReader.prototype = function() {
     };
 
     var readInstructionFile = function(table, toyRobot, filename, callback) {
+        
         // Configure relative to process.cwd() to allow running in IntelliJ IDEA from within src directory
         // or from root directory via commandline
         var fileLocation = (process.cwd().split("/").pop() == "src") ?
-            '../data/' + filename.toString() : './data/' + filename.toString();
+            '../../data/' + filename.toString() : './src/data/' + filename.toString();
 
         // Read contents of file asynchronously (non-blocking I/O) into memory and then invoke callback
         fs.readFile(fileLocation, 'utf8', function (err, instructionBuffer) {

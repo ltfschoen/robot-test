@@ -1,8 +1,8 @@
 var chai = require('chai');
 var expect = chai.expect; // use expect style of Chai
-var Table = require('../src/table');
-var ToyRobot = require('../src/toy_robot');
-var InstructionReader = require('../src/instruction_reader');
+var Table = require('../src/client/app/modules/table');
+var ToyRobot = require('../src/client/app/modules/toy_robot');
+var InstructionReader = require('../src/client/app/modules/instruction_reader');
 
 describe('NewToyRobotHasNoPlaceInitially', function() {
     it('Creates toy robot instance with no place', function() {

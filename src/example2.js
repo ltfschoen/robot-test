@@ -1,6 +1,6 @@
-var Table = require('./table');
-var ToyRobot = require('./toy_robot');
-var InstructionReader = require('./instruction_reader');
+var Table = require('./client/app/modules/table');
+var ToyRobot = require('./client/app/modules/toy_robot');
+var InstructionReader = require('./client/app/modules/instruction_reader');
 
 var table = new Table();
 var toyRobot = new ToyRobot();

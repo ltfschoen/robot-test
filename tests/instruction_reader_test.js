@@ -1,12 +1,12 @@
 var fs = require('fs');
 var chai = require('chai');
 var expect = chai.expect; // use expect style of Chai
-var InstructionReader = require('../src/instruction_reader');
+var InstructionReader = require('../src/client/app/modules/instruction_reader');
 
 describe('NewInstructionReaderWithFilename', function() {
     it('Reads instructions from mock file without error', function(callback) {
         var filename = "example_instructions1";
-        var fileLocation = './data/' + filename.toString(); // relative to process.cwd()
+        var fileLocation = './src/client/data/' + filename.toString(); // relative to process.cwd()
         fs.readFile(fileLocation, 'utf8', function (err, instructionBuffer) {
             // Propogate error and exit function
             if (err) {

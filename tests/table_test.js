@@ -1,7 +1,7 @@
 var chai = require('chai');
 var expect = chai.expect; // use expect style of Chai (BDD style)
-var Table = require('../src/table');
-var arrayEquality = require('../utils/array_equality');
+var Table = require('../src/client/app/modules/table');
+var arrayEquality = require('../src/client/app/utils/array_equality');
 
 describe('NewTableHasDefaultDimensions', function() {
     it('Creates default table size', function() {
