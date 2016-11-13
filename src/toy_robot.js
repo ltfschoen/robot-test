@@ -6,12 +6,12 @@ ToyRobot.prototype = function() {
         return command.split(' ').shift();
     };
 
-    var changePlace = function(table, newPlace) {
-        return table.changeToyRobotPlace(newPlace);
+    var changePlace = function(table, toyRobot, newPlace) {
+        return table.changeToyRobotPlace(toyRobot, newPlace);
     };
 
-    var move = function(table) {
-        return table.moveToyRobot();
+    var move = function(table, toyRobot, proposedPlace) {
+        return table.moveToyRobot(toyRobot, proposedPlace);
     };
 
     var rotate = function(table, rotation) {
