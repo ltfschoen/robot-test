@@ -5,37 +5,37 @@ var Place = require('./place');
 function InstructionReader() {}
 
 InstructionReader.prototype = function() {
-    var place;
+    var proposedPlace;
 
     var getPlaceArgumentsFromPlaceCommand = function(command) {
         return command.split(" ").slice(-1).join().split(",");
     };
 
     var processPlaceCommand = function(command, table, toyRobot) {
-        place = new Place(getPlaceArgumentsFromPlaceCommand(command));
+        proposedPlace = new Place(getPlaceArgumentsFromPlaceCommand(command));
         // Validate place and that new place is not same as current place (unless unplaced)
-        if (place.isValidPlace() && !place.isSameAsCurrentPlace(table)) { toyRobot.changePlace(table, place); }
+        if (proposedPlace.isValidPlace() && !proposedPlace.isSameAsCurrentPlace(table)) { toyRobot.changePlace(table, toyRobot, proposedPlace); }
     };
 
     var processRotateCommand = function(command, table, toyRobot) {
-        // Validate place is valid prior to moving
-        if (typeof place !== "undefined" && table.isToyRobotPlaced) {
+        // Validate proposed place is valid prior to moving
+        if (typeof proposedPlace !== "undefined" && table.isToyRobotPlaced) {
             // Ignore rotation when not on the table
-            if(place.isValidPlace()) { toyRobot.rotate(table, command); }
+            if(proposedPlace.isValidPlace()) { toyRobot.rotate(table, command); }
         }
     };
 
     var processMoveCommand = function(table, toyRobot) {
-        // Validate place is valid prior to moving
-        if (typeof place !== "undefined" && table.isToyRobotPlaced) {
+        // Validate proposed place is valid prior to moving
+        if (typeof proposedPlace !== "undefined" && table.isToyRobotPlaced) {
             // Ignore move when not on the table or move would cause toy robot to fall off table
-            if(place.isValidToMove()) { toyRobot.move(table); }
+            if(proposedPlace.isValidToMove()) { toyRobot.move(table, toyRobot, proposedPlace); }
         }
     };
 
     var processReportCommand = function(table, toyRobot) {
-        // Validate has been placed and place is valid prior to reporting to standard output
-        if (typeof place !== "undefined" && table.isToyRobotPlaced) {
+        // Validate has been placed and proposed place is valid prior to reporting to standard output
+        if (typeof proposedPlace !== "undefined" && table.isToyRobotPlaced) {
             var currentPlace = toyRobot.reportCurrentPlace(table);
             // Additional assurance to not print output if still has initial unplaced value
             if (currentPlace != ",,") { process.stdout.write(currentPlace + "\n"); }
@@ -89,6 +89,7 @@ InstructionReader.prototype = function() {
     };
 
     return {
+        getPlaceArgumentsFromPlaceCommand: getPlaceArgumentsFromPlaceCommand,
         readInstructionFile: readInstructionFile,
         interpretCommandsFromInstructions: interpretCommandsFromInstructions,
         processPlaceCommand: processPlaceCommand,
